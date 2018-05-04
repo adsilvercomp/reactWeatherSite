@@ -11,9 +11,7 @@ class Layout extends React.Component {
             description: "",
             temperature: "",
             icon: "",
-            weekDate: [],
-            weekTemp: [],
-            weekIcon: []
+            apiData: []
         };
     }
 
@@ -26,9 +24,19 @@ class Layout extends React.Component {
                 context.today(weatherArr);
 
                 context.thisWeek(weatherArr);
+
             })
+    }
 
 
+    thisWeek(weatherArr) {
+           const context = this
+           let DataArr = []
+        for(let i=1; i<weatherArr.length-2; i++){
+            DataArr.push(weatherArr[i])
+        }
+        context.setState({apiData: DataArr})
+        console.log(this.state.apiData);
     }
 
 
@@ -45,31 +53,7 @@ class Layout extends React.Component {
 
 
 
-    thisWeek = (weatherArr) => {
-        console.log("this is for thisWeek " + weatherArr);
-        let dateArr = []
-        let temperatureArr = []
-        let iconArr = []
-        for (let i = 1; i < weatherArr.length - 2; i++) {
 
-            dateArr.push( weatherArr[i].date.weekday + " " + weatherArr[i].date.month + "/" + weatherArr[i].date.day )
-
-            temperatureArr.push("High " + weatherArr[i].high.fahrenheit + "°F" + " / " + "Low " + weatherArr[i].low.fahrenheit + "°F")
-
-            iconArr.push(weatherArr[i].icon_url)
-
-
-        }
-        console.log(dateArr);
-        this.setState({ weekDate: dateArr })
-
-        console.log(temperatureArr);
-        this.setState({ weekTemp: temperatureArr })
-
-        console.log(iconArr);
-        this.setState({ weekIcon: iconArr })
-        console.log("this is the weekIcon " +this.state.weekIcon);
-    }
 
 
     render() {
@@ -83,7 +67,20 @@ class Layout extends React.Component {
 
                 <Header2 />
 
-                <ThisWeek date={this.state.weekDate} temp={this.state.weekTemp} icon={this.state.weekIcon}/>
+                <ThisWeek>
+                    
+                    {this.state.apiData.map(item =>{
+                        return(
+                            <li>
+                              <h1> {item.date.weekday} {item.date.month} / {item.date.day} <br/> High {item.high.fahrenheit} °F <br/> Low {item.low.fahrenheit} °F</h1> 
+                              <img src={item.icon_url}/>
+                              <hr/>
+                            </li>    
+                        )
+                    })}
+                        
+                    
+                </ThisWeek>    
 
                 <Footer />
 
