@@ -29,15 +29,7 @@ class Layout extends React.Component {
     }
 
 
-    thisWeek(weatherArr) {
-           const context = this
-           let DataArr = []
-        for(let i=1; i<weatherArr.length-2; i++){
-            DataArr.push(weatherArr[i])
-        }
-        context.setState({apiData: DataArr})
-        console.log(this.state.apiData);
-    }
+    
 
 
     today = (weatherArr) => {
@@ -51,7 +43,15 @@ class Layout extends React.Component {
         this.setState({ icon: weatherArr[0].icon_url })
     }
 
-
+    thisWeek(weatherArr) {
+        const context = this
+        let DataArr = []
+     for(let i=1; i<weatherArr.length-2; i++){
+         DataArr.push(weatherArr[i])
+     }
+     context.setState({apiData: DataArr})
+     console.log(this.state.apiData);
+ }
 
 
 
