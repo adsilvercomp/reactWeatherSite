@@ -3,9 +3,9 @@ import React from "react";
 class Today extends React.Component {
 
     render() {
+       
         return (
-         
-            <div id="today">
+            <div id="today" style={{backgroundImage: "url(" + this.props.background + ")"}}>
                 <h1 id="date">{this.props.date}</h1>
                 <h1 id="description">{this.props.description}</h1>
                 <h3 id="temperature">{this.props.temperature}</h3>

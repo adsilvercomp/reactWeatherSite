@@ -11,7 +11,8 @@ class Layout extends React.Component {
             description: "",
             temperature: "",
             icon: "",
-            apiData: []
+            apiData: [],
+            weatherBackground: ""
         };
     }
 
@@ -25,11 +26,40 @@ class Layout extends React.Component {
 
                 context.thisWeek(weatherArr);
 
+                //this will set the state of the background gif for today's weather
+                let weather = weatherArr[0].conditions
+                console.log("this is the weather " + weather)
+
+            
+
+                switch (weather) {
+                    case "Chance of Rain":
+                        context.setState({ weatherBackground: "https://media.giphy.com/media/n0Zt16UrMKNFu/giphy.gif" })
+                        break;
+                    case "Rain":
+                        context.setState({ weatherBackground: "https://media.giphy.com/media/n0Zt16UrMKNFu/giphy.gif" })
+                        break;
+                    case "Overcast":
+                        context.setState({ weatherBackground: "https://media.giphy.com/media/TEvh9P0jAFbvW/giphy.gif" })
+                        break;
+                    case "Mostly Cloudy":
+                        context.setState({ weatherBackground: "https://media.giphy.com/media/TEvh9P0jAFbvW/giphy.gif" })
+                        break;
+                    case "Partly Cloudy":
+                        context.setState({ weatherBackground: "https://media.giphy.com/media/l41lQIclE3lItAlfq/giphy.gif" })
+                        break;
+                    case "Clear":
+                        context.setState({ weatherBackground: "https://media.giphy.com/media/yNFsoLskwEBYA/giphy.gif" })
+                        break;
+
+                }
+
+
             })
     }
 
 
-    
+
 
 
     today = (weatherArr) => {
@@ -46,41 +76,40 @@ class Layout extends React.Component {
     thisWeek(weatherArr) {
         const context = this
         let DataArr = []
-     for(let i=1; i<weatherArr.length-2; i++){
-         DataArr.push(weatherArr[i])
-     }
-     context.setState({apiData: DataArr})
-     console.log(this.state.apiData);
- }
+        for (let i = 1; i < weatherArr.length - 2; i++) {
+            DataArr.push(weatherArr[i])
+        }
+        context.setState({ apiData: DataArr })
+        console.log(this.state.apiData);
+    }
 
 
 
 
     render() {
-
         return (
 
             <div id="container">
                 <Header1 />
 
-                <Today date={this.state.date} description={this.state.description} temperature={this.state.temperature} icon={this.state.icon} />
+                <Today date={this.state.date} description={this.state.description} temperature={this.state.temperature} icon={this.state.icon} background={this.state.weatherBackground} />
 
                 <Header2 />
 
                 <ThisWeek>
-                    
-                    {this.state.apiData.map(item =>{
-                        return(
+
+                    {this.state.apiData.map(item => {
+                        return (
                             <li>
-                              <h1> {item.date.weekday} {item.date.month} / {item.date.day} <br/> High {item.high.fahrenheit} °F <br/> Low {item.low.fahrenheit} °F</h1> 
-                              <img src={item.icon_url}/>
-                              <hr/>
-                            </li>    
+                                <h1> {item.date.weekday} {item.date.month} / {item.date.day} <br /> High {item.high.fahrenheit} °F <br /> Low {item.low.fahrenheit} °F</h1>
+                                <img src={item.icon_url} />
+                                <hr />
+                            </li>
                         )
                     })}
-                        
-                    
-                </ThisWeek>    
+
+
+                </ThisWeek>
 
                 <Footer />
 
