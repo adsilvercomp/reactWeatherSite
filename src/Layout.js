@@ -15,6 +15,7 @@ class Layout extends React.Component {
             weatherBackground: ""
         };
     }
+    //
 
     componentDidMount() {
         const context = this
