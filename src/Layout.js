@@ -83,14 +83,14 @@ class Layout extends React.Component {
         console.log(this.state.apiData);
     }
 
-
+    
 
 
     render() {
         return (
 
             <div id="container">
-                <Header1 />
+                <Header1/>
 
                 <Today date={this.state.date} description={this.state.description} temperature={this.state.temperature} icon={this.state.icon} background={this.state.weatherBackground} />
 

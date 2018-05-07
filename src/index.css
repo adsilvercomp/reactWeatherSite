@@ -5,6 +5,14 @@
     font-size: 30px;
     color:orange;
     }
+
+#header2{
+    color: white;
+    padding-top:2%;
+    font-family: 'Lobster', cursive;
+    font-family: 'PT Sans Narrow', sans-serif;
+    font-size: 30px;
+}
     
     #container{
         background-color:rgb(53, 51, 51);
