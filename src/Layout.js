@@ -18,7 +18,7 @@ class Layout extends React.Component {
 
     componentDidMount() {
         const context = this
-        axios.get("http://api.wunderground.com/api/a9ff9939e8d6ed37/forecast10day/q/NY/New_York.json")
+        axios.get("https://api.wunderground.com/api/a9ff9939e8d6ed37/forecast10day/q/NY/New_York.json")
             .then(function (response) {
                 let weatherArr = (response.data.forecast.simpleforecast.forecastday);
 
